@@ -1,0 +1,14 @@
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import {UsersResolver} from './users.resolver';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserSchema } from './users.schema';
+import {UsersService} from './users.service';
+
+@Module({
+  imports: [MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])],
+  providers: [UsersResolver, UsersService],
+  exports: [UsersService]
+})
+export class UsersModule {
+}
